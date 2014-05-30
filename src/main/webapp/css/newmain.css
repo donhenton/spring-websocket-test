@@ -1,0 +1,272 @@
+#header {
+	position: absolute;
+	left: 2.5%;
+	width: 94%;
+	height: 10%;
+	top: 0.5%;
+	background-color: #EAD8C6;
+	color: #605850;
+	font-weight: bold;
+	font-size: 35px;
+	text-indent: 5px;
+	vertical-align: middle;
+	padding: 0 0 0 1%;
+}
+
+.invisible
+{
+  visibility: hidden;
+
+}
+
+.visible
+{
+  visibility: visible;
+
+}
+
+.error
+{
+  font-weight: bold;
+  color: red;
+  border: thin solid red;	
+}
+
+#floaterHeader {
+	float: left;
+	height: 12.5%;
+	position: relative;
+}
+
+#contentHeader {
+	clear: both;
+	height: 50%;
+}
+
+h1 {
+	color: #928D6D;
+}
+
+h2 {
+	color: #928D6D;
+}
+
+h3 {
+	color: #928D6D;
+}
+
+h4 {
+	color: #928D6D;
+}
+
+.itemContainer
+{
+ margin: 10px 0px 10px 0px;
+ 
+
+}
+
+span.linespacer
+{
+ 	margin: 0px 10px 0px 10px;
+}
+
+/** */
+div.columnContainer {
+	width: 75%;
+}
+
+div.leftColumn {
+	float: left;
+	width: 49.5%;
+	vertical-align: top;
+}
+
+div.rightColumn {
+	float: right;
+	width: 49.5%;
+	text-align: left;
+	vertical-align: top;
+}
+
+/** */
+.column {
+	background-color: #44565B;
+	color: #D0DCDF;
+	padding: 5px 10px 5px 10px;
+	font-weight: bold;
+	display: block;
+}
+
+.header1 {
+	font-size: 20px;
+	margin: 10px 0 10px 0;
+}
+
+.header2 {
+	font-size: 15px;
+	padding: 5px 10px 5px 10px;
+	margin: 10px 0 10px 0;
+}
+
+div.resultsClass {
+	position: relative;
+	padding: 10px;
+	border: 2px solid #400F26;
+	margin: 10px
+}
+
+#footer {
+	position: absolute;
+	left: 2.5%;
+	width: 95%;
+	height: 5%;
+	top: 93%;
+	color: #0C2830;
+	border-bottom: thin solid #0C2830;
+	border-top: thin solid #0C2830;
+	text-align: center;
+	background-color: #EAE2DA;
+	Font-size: 12px;
+	font-weight: bold;
+}
+
+#subTitle {
+	position: relative;
+	font-size: 24px;
+	margin: 5px 5px 10px 5px;
+}
+
+#innerBody {
+	margin: 5px;
+}
+
+
+
+#body {
+	position: absolute;
+	left: 12.5%;
+	width: 85%;
+	height: 83.5%;
+	top: 10.5%;
+	background-color: white;
+}
+
+ul {
+	list-style-type: square;
+}
+
+
+a, a:active, a:visited {
+	 
+	color:#44565B;
+	text-decoration:underline;
+}
+a:hover {
+	 
+	color:#7B5B6A;
+	text-decoration:none;
+}
+
+
+
+
+.myButton {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a38996), color-stop(1, #51434a) );
+	background:-moz-linear-gradient( center top, #a38996 5%, #51434a 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#a38996', endColorstr='#51434a');
+	background-color:#a38996;
+	/*
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border-radius:4px;
+	*/
+	
+	border:2px solid #947c88;
+	display:inline-block;
+	color:#eae8da;
+	/* font-family:Verdana; */
+	font-size:12px;
+	font-weight:bold;
+	padding:5px 15px;
+	text-decoration:none;
+	cursor: pointer;
+	text-shadow:2px 2px 0px #323A3C;
+}.myButton:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #51434a), color-stop(1, #a38996) );
+	background:-moz-linear-gradient( center top, #51434a 5%, #a38996 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#51434a', endColorstr='#a38996');
+	background-color:#51434a;
+}.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+BODY {
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+	color: #323A3C;
+	background-color: #EAE8DA;
+	font-size: 12px;
+	background-repeat: repeat;
+	background-image:	url("../images/bg_grad.gif")
+}
+
+
+div.menuDiv UL {
+	PADDING-BOTTOM: 0px;
+	LIST-STYLE-TYPE: none;
+	MARGIN: 0px;
+	PADDING-LEFT: 0px;
+	PADDING-RIGHT: 0px;
+	PADDING-TOP: 0px
+}
+
+div.menuDiv  A {
+	
+	PADDING-BOTTOM: 3px;
+	PADDING-TOP: 3px;
+	DISPLAY: block;
+	
+	COLOR: #323A3C;
+
+	
+}
+
+ 
+
+div.menuDiv  A:visited {
+	PADDING-BOTTOM: 3px;
+	PADDING-TOP: 3px;
+	DISPLAY: block;
+	
+	COLOR: #323A3C;
+	
+	
+}
+
+div.menuDiv  A:hover {
+	BACKGROUND: #BFD8DF;
+	COLOR: #323A3C ;
+	text-decoration:none;
+	
+}
+
+div.menuDiv {
+	FONT-SIZE: 10px;
+	font-weight: bold;
+	font-variant: small-caps;
+	
+	
+	
+}
+#menu {
+	position: absolute;
+	left: 2.5%;
+	width: 10%;
+	height: 83.5%;
+	top: 10.5%;
+	background-color: #EAE2DA
+}
+#main_navigation P {
+	MARGIN-TOP: 0px
+}
