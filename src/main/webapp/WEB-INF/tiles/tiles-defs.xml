@@ -17,6 +17,11 @@
 			value="/WEB-INF/views/pages/homepage_body.jsp" />
 	</definition>
 
-
+            <definition name="tiles.basicWebsockets" extends="tiles.base.definition">
+		<put-attribute name="title" value="Websocket Demo 1" />
+		<put-attribute name="subTitle" value="Websocket Demo 1" />
+		<put-attribute name="body"
+			value="/WEB-INF/views/pages/basicWebsockets_body.jsp" />
+	</definition>
 
 </tiles-definitions> 

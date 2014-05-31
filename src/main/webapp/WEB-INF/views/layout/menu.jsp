@@ -11,5 +11,5 @@
 <h3>Menu</h3>
 	<div class="menuDiv">
 		<a href="<c:out value="${baseURL}home.html"/>">Home</a>
-		
+		<a href="<c:out value="${baseURL}basicWebsockets.html"/>">Basic Websockets</a>
 	</div>

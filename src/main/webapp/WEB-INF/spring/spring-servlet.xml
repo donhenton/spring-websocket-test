@@ -2,40 +2,47 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="   
-    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd   
-   http://www.springframework.org/schema/context         http://www.springframework.org/schema/context/spring-context-4.0.xsd   
- http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
-    <!-- Configures the @Controller programming model -->
-   
-   
+    xmlns:websocket="http://www.springframework.org/schema/websocket"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd      http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+    <!--
+    <websocket:message-broker>
+        <websocket:stomp-endpoint path="/foo">
+            <websocket:handshake-handler ref="myHandler"/>
+            <websocket:sockjs/>
+        </websocket:stomp-endpoint>
+        <websocket:stomp-broker-relay client-login="clientlogin"
+            client-passcode="clientpass"
+            heartbeat-receive-interval="5000"
+            heartbeat-send-interval="5000" prefix="/topic,/queue"
+            relay-host="relayhost" relay-port="1234"
+            system-login="syslogin" system-passcode="syspass" virtual-host="example.org"/>
+    </websocket:message-broker>
+    -->
+    <websocket:message-broker application-destination-prefix="/app">
+        <websocket:stomp-endpoint path="/simplemessages">
+            <websocket:sockjs/>
+        </websocket:stomp-endpoint>
+        <websocket:simple-broker prefix="/queue, /topic"/>
+    </websocket:message-broker>
     <context:component-scan base-package="com.dhenton9000"/>
     <mvc:annotation-driven/>
-    
-    
     <bean
         class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
         <property name="order" value="1"/>
     </bean>
-    
     <bean
         class="org.springframework.web.servlet.view.tiles3.TilesConfigurer" id="tilesConfigurer">
         <property name="definitions">
             <list>
                 <value>/WEB-INF/tiles/tiles-defs.xml</value>
-                 
             </list>
         </property>
     </bean>
-    
-    
-    
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
         <property name="order" value="2"/>
         <!-- must be the last -->
     </bean>
-    
 </beans>

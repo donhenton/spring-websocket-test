@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.apache.log4j.*;
+import com.fasterxml.jackson.databind.JsonMappingException;
 
 
 /**
@@ -25,10 +26,10 @@ public class HomePageController {
 		return new ModelAndView("tiles.homepage", "message", message);
 	}
 	
-	@RequestMapping("/credits")
+	@RequestMapping("/basicWebsockets")
 	public ModelAndView creditsPage() {
 		
-		return new ModelAndView("tiles.creditspage");
+		return new ModelAndView("tiles.basicWebsockets");
 	}	
 	
 }
