@@ -25,6 +25,8 @@
         <websocket:simple-broker prefix="/queue, /topic"/>
     </websocket:message-broker>
     <context:component-scan base-package="com.dhenton9000"/>
+    
+    <mvc:resources mapping="/resources/**" location="/resources/" />
     <mvc:annotation-driven/>
     <bean
         class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver">

@@ -24,12 +24,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</title>
 		 
 		<base href="<%= basePath %>" />
-		<script type="text/javascript"  src="js/jquery-1.10.2.min.js"></script>
- 		<script type="text/javascript"  src="js/json.min.js"></script>
-                <script type="text/javascript"  src="js/stomp.js"></script>
-                <script type="text/javascript"  src="js/knockout-3.0.0.js"></script>
-                <script type="text/javascript"  src="js/sockjs-0.3.4.min.js"></script>
-		<link rel="stylesheet" href="css/newmain.css" type="text/css"></link>
+		<script type="text/javascript"  src="resources/js/jquery-1.10.2.min.js"></script>
+ 		<script type="text/javascript"  src="resources/js/json.min.js"></script>
+                <script type="text/javascript"  src="resources/js/stomp.js"></script>
+                <script type="text/javascript"  src="resources/js/knockout-3.0.0.js"></script>
+                <script type="text/javascript"  src="resources/js/sockjs-0.3.4.min.js"></script>
+		<link rel="stylesheet" href="resources/css/newmain.css" type="text/css"></link>
 		
 
 	</head>

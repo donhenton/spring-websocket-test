@@ -19,8 +19,13 @@ public class HomePageController {
 	
 	private static Logger log = LogManager.getLogger(HomePageController.class);
 	
+        @RequestMapping("/home")
+	public ModelAndView homePage2() {
+		String message = "Hello World, Spring 3.0!";
+		return new ModelAndView("tiles.homepage", "message", message);
+	}
 	
-	@RequestMapping("/home")
+	@RequestMapping("/")
 	public ModelAndView homePage() {
 		String message = "Hello World, Spring 3.0!";
 		return new ModelAndView("tiles.homepage", "message", message);

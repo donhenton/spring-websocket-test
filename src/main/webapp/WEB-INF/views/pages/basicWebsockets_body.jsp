@@ -2,7 +2,7 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <!DOCTYPE html>
 
-<link rel="stylesheet" href="<c:url value="/css/bootstrap/css/bootstrap.min.css"/>">
+<link rel="stylesheet" href="<c:url value="resources/css/bootstrap/css/bootstrap.min.css"/>">
  
 <body>
   <noscript>
@@ -62,7 +62,7 @@
   <!-- Latest compiled and minified JQuery JavaScript (necessary for Bootstrap's JavaScript plugins). Placed at the end of the document so the pages load faster -->
    
   <%-- URL for the STOMP end point for registering a stomp client--%>
-  <c:url value="/app/simplemessages" var="socketDest" />
+  <c:url value="/simplemessages" var="socketDest" />
   <script type="text/javascript">
             /***********************************************/
             /* PLEASE READ UP ON STOMP AND SOCKJS          */
@@ -180,7 +180,7 @@
                 // Notice that we dont pass in username and password as Spring Security
                 // has already provided the server with the Principal object containing user credentials
                 // 2) The last argument is a callback function which is called when connection succeeds
-                stompClient.connect('', '', function(frame) {
+                stompClient.connect('','', function(frame) {
                     //set the connect and disconnect button state. (disable connect button)
                     setConnected(true);
                     // In production code remove the next line

@@ -5,7 +5,7 @@
 <%@ taglib uri="/WEB-INF/tld/spring-form.tld" prefix="form"%>
 
 			
-<c:url var="baseURL" value="/app/" />
+<c:url var="baseURL" value="/" />
 
 
 <h3>Menu</h3>
