@@ -65,9 +65,9 @@
   <c:url value="/simplemessages" var="socketDest" />
   <script type="text/javascript">
             /***********************************************/
-            /* PLEASE READ UP ON STOMP AND SOCKJS          */
+            /* PLEASE READ UP ON STOMP           */
             /* 1) http://jmesnil.net/stomp-websocket/doc/  */
-            /* 2) https://github.com/sockjs/sockjs-client  */
+           
             /***********************************************/
 
             //Declare a stompclient which will connect to the server
@@ -170,11 +170,9 @@
                 $("#txtSendMessage").val("");
                 $("#txtSendMessage").focus();
                 $("#txtSendMessage").select();
-                // Register a websocket endpoint using SockJS and stomp.js
-                // Refer to Java class Refer to Java class 
-                // WebSocketConfig.java#registerStompEndpoints(StompEndpointRegistry registry)
-                var socket = new SockJS('${socketDest}');
-                stompClient = Stomp.over(socket);
+                // Register a websocket endpoint using   stomp.js
+                                 
+                stompClient = Stomp.client( "ws://localhost:61614/stomp", "v11.stomp" );
                 // Now that a stomp client is defined, its time to open a connection
                 // 1) First we connect to the websocket server
                 // Notice that we dont pass in username and password as Spring Security
@@ -193,7 +191,7 @@
                     // the "/topic/simplemessagesresponse" destination where the server will echo the messages.
                     // When a broadcast message is received by the client on that destination, it will be shown by appending
                     // a paragraph to the DOM in the client browser.
-                    stompClient.subscribe("/topic/simplemessagesresponse", function(servermessage) {//Callback when server responds
+                    stompClient.subscribe("testQueue.out", function(servermessage) {//Callback when server responds
                         showServerBroadcast(JSON.parse(servermessage.body).messageContent, false);
                         //Server responded so hide the info alert
                         $("#formInfoAlert").slideUp(400);
@@ -226,7 +224,7 @@
                 //Show on the browser page that a message is being sent
                 showServerBroadcast("Your message '" + messageForServer + "' is being sent to the server.", true);
                 // The message for the server must be in JSON format. Also refer SimpleMessage.java POJO.
-                stompClient.send("/app/simplemessages", {}, JSON.stringify({
+                stompClient.send("testQueue.in", {}, JSON.stringify({
                     'message' : messageForServer
                 }));
             }

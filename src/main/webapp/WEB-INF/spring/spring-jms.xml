@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop/spring-aop"
+        xmlns:context="http://www.springframework.org/schema/context/spring-contex"
+        xmlns:jms="http://www.springframework.org/schema/jms"
+        xmlns:jee="http://www.springframework.org/schema/jee/spring-jee"
+        xmlns:tx="http://www.springframework.org/schema/tx/spring-tx"
+        xmlns:util="http://www.springframework.org/schema/util/spring-util"
+        xmlns:p="http://www.springframework.org/schema/p"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+          http://www.springframework.org/schema/aop/spring-aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+          http://www.springframework.org/schema/context/spring-context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+          http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-4.0.xsd
+          http://www.springframework.org/schema/jee/spring-jee http://www.springframework.org/schema/jee/spring-jee-4.0.xsd
+          http://www.springframework.org/schema/tx/spring-tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+          http://www.springframework.org/schema/util/spring-util http://www.springframework.org/schema/util/spring-util-4.0.xsd" default-destroy-method="destroy">
+
+<!--
+http://bsnyderblog.blogspot.com/2010/05/tuning-jms-message-consumption-in.html
+http://www.springbyexample.org/examples/simple-spring-jms-listener-config.html
+
+
+-->
+
+
+    <bean id="jmsActiveMQFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+        <property name="connectionFactory">
+            <ref bean="queueConnectionFactory"/>
+        </property>
+    </bean>
+
+    <bean id="queueConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://localhost:61616" />
+        <property name="redeliveryPolicy" ref="redeliveryPolicy" />
+    </bean>
+
+    <bean name="redeliveryPolicy" class="org.apache.activemq.RedeliveryPolicy">
+        <property name="maximumRedeliveries" value="0" />
+    </bean>
+  
+    <bean id="testQueue.in.bean" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg index="0" value="testQueue.in" />
+    </bean>
+    
+     <bean id="testQueue.out.bean" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg index="0" value="testQueue.out" />
+    </bean>
+<!--
+    <bean id="listenerContainer" 
+          class="org.springframework.jms.listener.SimpleMessageListenerContainer">
+        <property name="connectionFactory" ref="jmsActiveMQFactory"/>
+        <property name="destination" ref="testQueue"/>
+        <property name="messageListener" ref="jmsInputAdapter"/>
+    </bean>
+-->
+   
+    <jms:listener-container 	 
+        container-type="default"
+        connection-factory="jmsActiveMQFactory"
+        acknowledge="auto"
+        concurrency="10-50">
+        <jms:listener  destination="testQueue.in"  ref="simpleMessageListener" method="onMessage" />
+ 	 
+    </jms:listener-container>
+
+    <bean id="simpleMessageListener" class="com.dhenton9000.jms.sandbox.JmsListener">
+         
+    </bean>
+    <bean id="simpleMessageProducer" class="com.dhenton9000.jms.sandbox.JmsProducer">
+         <property name="template" ref="jmsActiveMQTemplate" />
+    </bean>
+
+
+    <bean id="jmsActiveMQTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory">
+            <ref bean="jmsActiveMQFactory"/>
+        </property>
+        <property name="defaultDestination">
+            <ref bean="testQueue.in.bean"/>
+        </property>
+    </bean>
+    
+    <bean id="jmsActiveMQTemplateOut" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory">
+            <ref bean="jmsActiveMQFactory"/>
+        </property>
+        <property name="defaultDestination">
+            <ref bean="testQueue.out.bean"/>
+        </property>
+    </bean>
+    
+</beans>
