@@ -4,15 +4,21 @@
  */
 package com.dhenton9000.jms.sandbox;
 
-import static com.dhenton9000.jms.sandbox.JmsProducer.MESSAGE_COUNT_PROPERTY;
+import com.dhenton9000.spring.websocket.model.MessageBroadcast;
+import com.dhenton9000.spring.websocket.model.SimpleMessage;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.io.UnsupportedEncodingException;
-import org.apache.activemq.command.ActiveMQBytesMessage;
+import java.io.Writer;
+import java.util.logging.Level;
 import javax.jms.JMSException;
 import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.Session;
-import org.slf4j.LoggerFactory;
+import org.apache.activemq.command.ActiveMQBytesMessage;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessageCreator;
 
@@ -29,8 +35,7 @@ public class JmsListener implements MessageListener {
     @Override
     public void onMessage(Message message) {
         try {
-            //int messageCount = 0;
-            // messageCount = message.getIntProperty(JmsProducer.MESSAGE_COUNT_PROPERTY);
+            final ObjectMapper mapper = new ObjectMapper();
 
             if (message instanceof ActiveMQBytesMessage) {
                 ActiveMQBytesMessage tm = (ActiveMQBytesMessage) message;
@@ -41,26 +46,41 @@ public class JmsListener implements MessageListener {
                 String msg = null;
                 try {
                     msg = new String(messageBytes, "UTF-8");
-                    String[] t = msg.split(":");
-                    msg = t[1];
-                    msg = msg.replaceAll("\\{", "");
-                    msg = msg.replaceAll("}", "");
-                    msg = msg.replaceAll("\"", "");
                 } catch (UnsupportedEncodingException ex) {
                     logger.error("encoding problem " + ex.getMessage());
                 }
 
                 logger.info("got message of '" + msg + "' in onMessage");
 
-                final String msgFinal = msg;
+                final String msgInboundFinal = msg;
                 getOutTemplate().send(new MessageCreator() {
 
                     @Override
                     public Message createMessage(
                             Session session) throws JMSException {
-                        String messageContents = "{\"messageContent\": \"Hello " + msgFinal + "\"}";
+                        String info = "";
+                        SimpleMessage simpleMessage;
+                        try {
+                            simpleMessage = mapper.readValue(msgInboundFinal, SimpleMessage.class);
+                            info = simpleMessage.getMessage();
+                        } catch (IOException ex) {
+                            logger.error("io problem translating to Simplemessage: " + ex.getMessage());
+                        }
+                        if (info == null) {
+                            info = "null";
+                        }
+                        MessageBroadcast mB = new MessageBroadcast("Hello "+info);
+                        
+                        Writer w = new StringWriter();
+                        try {
+                            mapper.writeValue(w, mB);
+                        } catch (IOException e) {
+                            logger.error(e.getClass().getName() + " " + e.getMessage());
+
+                        }
+
                         Message m
-                                = session.createTextMessage(messageContents);
+                                = session.createTextMessage(w.toString());
 
                         return m;
                     }
