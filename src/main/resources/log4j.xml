@@ -40,7 +40,7 @@ zzzzzzzzzzzzzzzzzzzzzzz
         <level value="DEBUG"/>
     </logger>
     <logger name="org.springframework">
-        <level value="DEBUG"/>
+        <level value="INFO"/>
     </logger>
 
  <logger name="org.apache">

@@ -8,7 +8,7 @@
 
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/spring/spring-beans.xml</param-value>
+		<param-value>/WEB-INF/spring/spring-jms.xml</param-value>
 	</context-param>
 	
 	<context-param>

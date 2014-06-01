@@ -3,28 +3,13 @@
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:mvc="http://www.springframework.org/schema/mvc"
     xmlns:websocket="http://www.springframework.org/schema/websocket"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd      http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
-    <!--
-    <websocket:message-broker>
-        <websocket:stomp-endpoint path="/foo">
-            <websocket:handshake-handler ref="myHandler"/>
-            <websocket:sockjs/>
-        </websocket:stomp-endpoint>
-        <websocket:stomp-broker-relay client-login="clientlogin"
-            client-passcode="clientpass"
-            heartbeat-receive-interval="5000"
-            heartbeat-send-interval="5000" prefix="/topic,/queue"
-            relay-host="relayhost" relay-port="1234"
-            system-login="syslogin" system-passcode="syspass" virtual-host="example.org"/>
-    </websocket:message-broker>
-    -->
-    <websocket:message-broker application-destination-prefix="/app">
-        <websocket:stomp-endpoint path="/simplemessages">
-            <websocket:sockjs/>
-        </websocket:stomp-endpoint>
-        <websocket:simple-broker prefix="/queue, /topic"/>
-    </websocket:message-broker>
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="         
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd      http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.0.xsd      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+    
+    
     <context:component-scan base-package="com.dhenton9000"/>
+    
+    <bean id="myHandler" class="com.dhenton9000.spring.websocket.handlers.TestHandshakeHandler"/>
     
     <mvc:resources mapping="/resources/**" location="/resources/" />
     <mvc:annotation-driven/>
