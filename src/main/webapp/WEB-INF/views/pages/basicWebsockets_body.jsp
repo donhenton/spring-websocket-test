@@ -192,6 +192,7 @@
                     // When a broadcast message is received by the client on that destination, it will be shown by appending
                     // a paragraph to the DOM in the client browser.
                     stompClient.subscribe("testQueue.out", function(servermessage) {//Callback when server responds
+                        console.log("--- "+servermessage.body+" ---");
                         showServerBroadcast(JSON.parse(servermessage.body).messageContent, false);
                         //Server responded so hide the info alert
                         $("#formInfoAlert").slideUp(400);

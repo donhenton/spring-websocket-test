@@ -66,7 +66,7 @@ http://www.springbyexample.org/examples/simple-spring-jms-listener-config.html
     </jms:listener-container>
 
     <bean id="simpleMessageListener" class="com.dhenton9000.jms.sandbox.JmsListener">
-         
+         <property name="outTemplate" ref="jmsActiveMQTemplateOut" />
     </bean>
     <bean id="simpleMessageProducer" class="com.dhenton9000.jms.sandbox.JmsProducer">
          <property name="template" ref="jmsActiveMQTemplate" />
