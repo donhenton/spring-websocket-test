@@ -14,19 +14,7 @@
     <mvc:resources mapping="/resources/**" location="/resources/" />
     <mvc:resources mapping="/pages/**" location="/pages/" />
     <mvc:annotation-driven/>
-    <bean
-        class="org.springframework.web.servlet.view.UrlBasedViewResolver" id="tilesViewResolver">
-        <property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
-        <property name="order" value="1"/>
-    </bean>
-    <bean
-        class="org.springframework.web.servlet.view.tiles3.TilesConfigurer" id="tilesConfigurer">
-        <property name="definitions">
-            <list>
-                <value>/WEB-INF/tiles/tiles-defs.xml</value>
-            </list>
-        </property>
-    </bean>
+ 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>
         <property name="suffix" value=".jsp"/>
