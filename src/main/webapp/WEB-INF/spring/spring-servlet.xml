@@ -9,7 +9,7 @@
     
     <context:component-scan base-package="com.dhenton9000"/>
     
-    <bean id="myHandler" class="com.dhenton9000.spring.websocket.handlers.TestHandshakeHandler"/>
+ 
     
     <mvc:resources mapping="/resources/**" location="/resources/" />
     <mvc:resources mapping="/pages/**" location="/pages/" />
