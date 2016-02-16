@@ -32,8 +32,10 @@ http://www.springbyexample.org/examples/simple-spring-jms-listener-config.html
     </bean>
 
     <bean id="queueConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-        <property name="brokerURL" value="tcp://localhost:61616" />
+        <property name="brokerURL" value="tcp://192.168.99.100:61616" />
         <property name="redeliveryPolicy" ref="redeliveryPolicy" />
+        <property name="userName" value="admin" />
+        <property name="password" value="admin" />
     </bean>
 
     <bean name="redeliveryPolicy" class="org.apache.activemq.RedeliveryPolicy">

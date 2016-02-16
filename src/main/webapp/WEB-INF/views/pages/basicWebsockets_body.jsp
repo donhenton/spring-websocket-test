@@ -172,13 +172,12 @@
                 $("#txtSendMessage").select();
                 // Register a websocket endpoint using   stomp.js
                                  
-                stompClient = Stomp.client( "ws://localhost:61614/stomp", "v11.stomp" );
+                stompClient = Stomp.client( "ws://192.168.99.100:61614/stomp", "v11.stomp" );
                 // Now that a stomp client is defined, its time to open a connection
                 // 1) First we connect to the websocket server
-                // Notice that we dont pass in username and password as Spring Security
-                // has already provided the server with the Principal object containing user credentials
+              
                 // 2) The last argument is a callback function which is called when connection succeeds
-                stompClient.connect('','', function(frame) {
+                stompClient.connect('admin','admin', function(frame) {
                     //set the connect and disconnect button state. (disable connect button)
                     setConnected(true);
                     // In production code remove the next line
@@ -186,9 +185,7 @@
                     //Lets show a connection success message
                     showServerBroadcast("Connection established: " + frame, false);
                     // Now subscribe to a topic of interest.
-                    // Refer to Java class WebsocketBroadcastController.java#processMessageFromClient(SimpleMessage message)
-                    // WebsocketBroadcastController is waiting for connections. Upon successful connection, it subscribes to
-                    // the "/topic/simplemessagesresponse" destination where the server will echo the messages.
+                   
                     // When a broadcast message is received by the client on that destination, it will be shown by appending
                     // a paragraph to the DOM in the client browser.
                     stompClient.subscribe("testQueue.out", function(servermessage) {//Callback when server responds
