@@ -29,31 +29,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <script type="text/javascript"  src="resources/js/stomp.js"></script>
                 <script type="text/javascript"  src="resources/js/knockout-3.0.0.js"></script>
                 <script type="text/javascript"  src="resources/js/sockjs-0.3.4.min.js"></script>
-		<link rel="stylesheet" href="resources/css/newmain.css" type="text/css"></link>
+		 
 		
 
 	</head>
 	<body>
-		<div id="header">
-			<tiles:insertAttribute name="header" />
-		</div>
+	 
 
-		<div id="menu">
-			<tiles:insertAttribute name="menu" />
-		</div>
-		<div id="body">
-			<div class="column header1" id="subTitle">
-				<tiles:getAsString name="subTitle" />
-				
-			</div>
+	 
+		 
+		 
 			<div id="innerBody">
 			<tiles:insertAttribute name="body" />  
 			</div>
-		</div>
-	
-		<div id="footer">
-			<tiles:insertAttribute name="footer" />
-		</div>
+	 
+	 
 	</body>
 	
 </html>
