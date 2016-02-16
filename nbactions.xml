@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
         <action>
-            <actionName>CUSTOM-jetty:run-war</actionName>
-            <displayName>jetty:run-war</displayName>
+            <actionName>CUSTOM-tomcat:redeploy</actionName>
+            <displayName>tomcat:redeploy</displayName>
             <goals>
-                <goal>jetty:run-war</goal>
+                <goal>clean</goal>
+                <goal>tomcat:redeploy</goal>
             </goals>
             <properties>
                 <skipTests>true</skipTests>

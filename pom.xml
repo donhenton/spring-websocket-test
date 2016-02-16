@@ -3,14 +3,15 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.dhenton9000.spring.websocket</groupId>
-    <artifactId>spring-websocket-test</artifactId>
+    <artifactId>websocket</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>spring-websocket-test</name>
+    <name>websocket</name>
     <description>Websocket and spring testing app</description>
     <build>
         <sourceDirectory>${basedir}/src/main/java</sourceDirectory>
         <outputDirectory>${basedir}/src/main/webapp/WEB-INF/classes</outputDirectory>
+        <finalName>websocket</finalName>
         <resources>
             <resource>
                 <directory>${basedir}/src/main/java</directory>
@@ -56,7 +57,14 @@
                     <target>1.7</target>
                 </configuration>
             </plugin>
-            
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
+                <configuration>
+                    <path>/websocket</path>
+                </configuration>
+            </plugin>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
                 <configuration>
@@ -71,36 +79,7 @@
                     </filesets>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-maven-plugin</artifactId>
-                <version>9.1.0.M0</version>
-                <configuration>
-                    <httpConnector>
-                        <port>7070</port>
-                    </httpConnector>
-                    <webApp>
-                        <contextPath>/websocket</contextPath>
-                    </webApp>
-                    <scanIntervalSeconds>10</scanIntervalSeconds>
-                    <scanTargetPatterns>
-                        <scanTargetPattern>
-                            <directory>src/main/webapp/WEB-INF</directory>
-                            <includes>
-                                <include>**/*.jsp</include>
-                                <include>**/*.properties</include>
-                                <include>**/*.xml</include>
-                            </includes>
-                        </scanTargetPattern>
-                    </scanTargetPatterns>
-                    <connectors>
-                        <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
-                            <port>7070</port>
-                            <maxIdleTime>60000</maxIdleTime>
-                        </connector>
-                    </connectors>
-                </configuration>
-            </plugin>
+            
         </plugins>
     </build>
     <!-- Shared version number properties <org.springframework.version>3.0.5.RELEASE</org.springframework.version> 
@@ -251,8 +230,8 @@
             <artifactId>activemq-spring</artifactId>
             <version>5.6.0</version>
            
-        </dependency>
-      -->
+          </dependency>
+        -->
       
         <dependency>
             <groupId>org.springframework</groupId>
