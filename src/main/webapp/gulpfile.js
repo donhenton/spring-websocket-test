@@ -74,11 +74,11 @@ gulp.task('copy-assets', function () {
 });
 gulp.task('reload-html', function()
 {
-    //apparently needs to be done twice
+     
  
              function reloadHTML()
              {
-                // livereload.reload(pageURL);
+                
                  livereload.reload(pageURL);
              }
              setTimeout( reloadHTML,200);
@@ -94,7 +94,7 @@ gulp.task('copy-html', function () {
                 console.log('updating html ' + file.relative);
 
             }))
-            .pipe(gulp.dest(tomcatHome + '/webapps/websocket'))
+            .pipe(gulp.dest(tomcatHome + '/webapps/websocket'));
              
              
 
